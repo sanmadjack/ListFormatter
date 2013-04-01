@@ -66,6 +66,7 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.removBlanksCheck = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -143,6 +144,7 @@
             this.inputText.Size = new System.Drawing.Size(232, 218);
             this.inputText.TabIndex = 0;
             this.inputText.TextChanged += new System.EventHandler(this.inputText_TextChanged);
+            this.inputText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputText_KeyDown);
             // 
             // groupBox4
             // 
@@ -165,6 +167,7 @@
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.outputText.Size = new System.Drawing.Size(233, 218);
             this.outputText.TabIndex = 0;
+            this.outputText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputText_KeyDown);
             // 
             // tableLayoutPanel5
             // 
@@ -284,18 +287,20 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.removBlanksCheck, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.singleQuoteCheck, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.commaCheck, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.lineBreakCheck, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel7, 0, 5);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 6);
-            this.tableLayoutPanel3.Controls.Add(this.customFormatCheck, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel7, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.customFormatCheck, 0, 9);
             this.tableLayoutPanel3.Controls.Add(this.duplicateCheck, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.sortCheck, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.sortCheck, 0, 5);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 9;
+            this.tableLayoutPanel3.RowCount = 10;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
@@ -305,6 +310,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(204, 275);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -356,7 +362,7 @@
             this.tableLayoutPanel7.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.perGroup, 1, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 120);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 144);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
@@ -407,7 +413,7 @@
             this.tableLayoutPanel4.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.perLineNumber, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 144);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 168);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -477,7 +483,7 @@
             // 
             this.sortCheck.AutoSize = true;
             this.sortCheck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sortCheck.Location = new System.Drawing.Point(3, 99);
+            this.sortCheck.Location = new System.Drawing.Point(3, 123);
             this.sortCheck.Name = "sortCheck";
             this.sortCheck.Size = new System.Drawing.Size(198, 18);
             this.sortCheck.TabIndex = 12;
@@ -555,6 +561,7 @@
             this.formattingText.TabIndex = 0;
             this.formattingText.Text = "select * from here where field in ($1:\':,:5) and other_field = $2:1";
             this.formattingText.TextChanged += new System.EventHandler(this.formattingText_TextChanged);
+            this.formattingText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputText_KeyDown);
             // 
             // formatsCombo
             // 
@@ -567,6 +574,7 @@
             this.formatsCombo.TabIndex = 5;
             this.formatsCombo.SelectedIndexChanged += new System.EventHandler(this.formatsCombo_SelectedIndexChanged);
             this.formatsCombo.TextUpdate += new System.EventHandler(this.formatsCombo_TextUpdate);
+            this.formatsCombo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputText_KeyDown);
             // 
             // saveBtn
             // 
@@ -591,6 +599,19 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.AddExtension = false;
+            // 
+            // removBlanksCheck
+            // 
+            this.removBlanksCheck.AutoSize = true;
+            this.removBlanksCheck.Checked = true;
+            this.removBlanksCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.removBlanksCheck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.removBlanksCheck.Location = new System.Drawing.Point(3, 99);
+            this.removBlanksCheck.Name = "removBlanksCheck";
+            this.removBlanksCheck.Size = new System.Drawing.Size(198, 18);
+            this.removBlanksCheck.TabIndex = 13;
+            this.removBlanksCheck.Text = "Remove Blanks";
+            this.removBlanksCheck.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -670,6 +691,7 @@
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.CheckBox removBlanksCheck;
     }
 }
 

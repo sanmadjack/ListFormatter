@@ -148,7 +148,10 @@ namespace WindowsFormsApplication1
                     break;
             }
 
-            string[] temp_texts = inputText.Text.Split(seperator);
+            StringBuilder input = new StringBuilder(inputText.Text);
+            input.Replace(Environment.NewLine, "\r");
+
+            string[] temp_texts = input.ToString().Split(seperator);
 
 
             Int32 i = 1;
@@ -161,7 +164,7 @@ namespace WindowsFormsApplication1
 
             List<string> texts = new List<string>();
             foreach(string temp_text in temp_texts) {
-                if (temp_text.Equals(""))
+                if (temp_text.Equals("") && removBlanksCheck.Checked)
                     continue;
 
                 text_count++;
@@ -413,6 +416,25 @@ namespace WindowsFormsApplication1
                     writer.Close();
                 }
             }
+        }
+
+        private void inputText_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBoxBase box = sender as TextBoxBase;
+            if (box == null)
+            {
+                return;
+            }
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        box.SelectAll();
+                        break;
+                }
+            }
+
         }
 
     }
