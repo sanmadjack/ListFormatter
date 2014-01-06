@@ -45,6 +45,7 @@
             this.itemCount = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.removBlanksCheck = new System.Windows.Forms.CheckBox();
             this.singleQuoteCheck = new System.Windows.Forms.CheckBox();
             this.commaCheck = new System.Windows.Forms.CheckBox();
             this.lineBreakCheck = new System.Windows.Forms.CheckBox();
@@ -66,7 +67,6 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.removBlanksCheck = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -254,12 +254,14 @@
             this.seperatorCombo.Items.AddRange(new object[] {
             "Line Break",
             "Comma",
-            "Space"});
+            "Space",
+            "Space, Tab or Newline"});
             this.seperatorCombo.Location = new System.Drawing.Point(3, 16);
             this.seperatorCombo.Name = "seperatorCombo";
             this.seperatorCombo.Size = new System.Drawing.Size(172, 21);
             this.seperatorCombo.TabIndex = 0;
-            this.seperatorCombo.SelectedIndexChanged += new System.EventHandler(this.seperatorCombo_SelectedIndexChanged);
+            this.seperatorCombo.SelectedIndexChanged += new System.EventHandler(this.reProcessText);
+            this.seperatorCombo.TextUpdate += new System.EventHandler(this.reProcessText);
             // 
             // itemCount
             // 
@@ -314,6 +316,19 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(204, 275);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
+            // removBlanksCheck
+            // 
+            this.removBlanksCheck.AutoSize = true;
+            this.removBlanksCheck.Checked = true;
+            this.removBlanksCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.removBlanksCheck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.removBlanksCheck.Location = new System.Drawing.Point(3, 99);
+            this.removBlanksCheck.Name = "removBlanksCheck";
+            this.removBlanksCheck.Size = new System.Drawing.Size(198, 18);
+            this.removBlanksCheck.TabIndex = 13;
+            this.removBlanksCheck.Text = "Remove Blanks";
+            this.removBlanksCheck.UseVisualStyleBackColor = true;
+            // 
             // singleQuoteCheck
             // 
             this.singleQuoteCheck.AutoSize = true;
@@ -324,7 +339,7 @@
             this.singleQuoteCheck.TabIndex = 1;
             this.singleQuoteCheck.Text = "Single Quotes";
             this.singleQuoteCheck.UseVisualStyleBackColor = true;
-            this.singleQuoteCheck.CheckedChanged += new System.EventHandler(this.singleQuoteCheck_CheckedChanged);
+            this.singleQuoteCheck.CheckedChanged += new System.EventHandler(this.reProcessText);
             // 
             // commaCheck
             // 
@@ -338,7 +353,7 @@
             this.commaCheck.TabIndex = 2;
             this.commaCheck.Text = "Commas";
             this.commaCheck.UseVisualStyleBackColor = true;
-            this.commaCheck.CheckedChanged += new System.EventHandler(this.commaCheck_CheckedChanged);
+            this.commaCheck.CheckedChanged += new System.EventHandler(this.reProcessText);
             // 
             // lineBreakCheck
             // 
@@ -403,7 +418,7 @@
             0,
             0,
             0});
-            this.perGroup.ValueChanged += new System.EventHandler(this.perGroup_ValueChanged);
+            this.perGroup.ValueChanged += new System.EventHandler(this.reProcessText);
             // 
             // tableLayoutPanel4
             // 
@@ -454,7 +469,7 @@
             0,
             0,
             0});
-            this.perLineNumber.ValueChanged += new System.EventHandler(this.perLineNumber_ValueChanged);
+            this.perLineNumber.ValueChanged += new System.EventHandler(this.reProcessText);
             // 
             // customFormatCheck
             // 
@@ -477,7 +492,7 @@
             this.duplicateCheck.TabIndex = 11;
             this.duplicateCheck.Text = "Remove Duplicates";
             this.duplicateCheck.UseVisualStyleBackColor = true;
-            this.duplicateCheck.CheckedChanged += new System.EventHandler(this.duplicateCheck_CheckedChanged);
+            this.duplicateCheck.CheckedChanged += new System.EventHandler(this.reProcessText);
             // 
             // sortCheck
             // 
@@ -489,7 +504,7 @@
             this.sortCheck.TabIndex = 12;
             this.sortCheck.Text = "Sort";
             this.sortCheck.UseVisualStyleBackColor = true;
-            this.sortCheck.CheckedChanged += new System.EventHandler(this.sortCheck_CheckedChanged);
+            this.sortCheck.CheckedChanged += new System.EventHandler(this.reProcessText);
             // 
             // formatLegendBox
             // 
@@ -599,19 +614,6 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.AddExtension = false;
-            // 
-            // removBlanksCheck
-            // 
-            this.removBlanksCheck.AutoSize = true;
-            this.removBlanksCheck.Checked = true;
-            this.removBlanksCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.removBlanksCheck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.removBlanksCheck.Location = new System.Drawing.Point(3, 99);
-            this.removBlanksCheck.Name = "removBlanksCheck";
-            this.removBlanksCheck.Size = new System.Drawing.Size(198, 18);
-            this.removBlanksCheck.TabIndex = 13;
-            this.removBlanksCheck.Text = "Remove Blanks";
-            this.removBlanksCheck.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

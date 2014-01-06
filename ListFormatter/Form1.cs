@@ -146,6 +146,12 @@ namespace WindowsFormsApplication1
                 case 2:
                     seperator[0] = ' ';
                     break;
+                case 3:
+                    seperator = "\r\n\t ".ToCharArray();
+                    break;
+                default:
+                    seperator = seperatorCombo.Text.ToCharArray();
+                    break;
             }
 
             StringBuilder input = new StringBuilder(inputText.Text);
@@ -310,17 +316,6 @@ namespace WindowsFormsApplication1
             processText();
         }
 
-        private void singleQuoteCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            processText();
-
-        }
-
-        private void commaCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            processText();
-
-        }
 
         private void lineBreakCheck_CheckedChanged(object sender, EventArgs e)
         {
@@ -328,11 +323,6 @@ namespace WindowsFormsApplication1
             processText();
         }
 
-        private void seperatorCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            processText();
-
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -354,39 +344,6 @@ namespace WindowsFormsApplication1
             processText();
         }
 
-        private void thousandCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            processText();
-
-        }
-
-        private void queryStartText_TextChanged(object sender, EventArgs e)
-        {
-            processText();
-
-        }
-
-        private void queryEndText_TextChanged(object sender, EventArgs e)
-        {
-            processText();
-
-        }
-
-        private void perLineNumber_ValueChanged(object sender, EventArgs e) {
-            processText();
-        }
-
-        private void perGroup_ValueChanged(object sender, EventArgs e) {
-            processText();
-        }
-
-        private void duplicateCheck_CheckedChanged(object sender, EventArgs e) {
-            processText();
-        }
-
-        private void sortCheck_CheckedChanged(object sender, EventArgs e) {
-            processText();
-        }
 
         private void formattingText_TextChanged(object sender, EventArgs e) {
             text_changed = true;
@@ -435,6 +392,11 @@ namespace WindowsFormsApplication1
                 }
             }
 
+        }
+
+        private void reProcessText(object sender, EventArgs e)
+        {
+            processText();
         }
 
     }
